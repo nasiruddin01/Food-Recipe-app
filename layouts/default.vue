@@ -2,14 +2,16 @@
   <div class="primary-container">
     <navbar />
     <home />
+    <popularfood />
     <Nuxt />
   </div>
 </template>
 <script>
 import navbar from '../components/navbar.vue'
 import home from '../components/home.vue'
+import popularfood from '../components/popularfood.vue'
 export default {
-  components: { navbar, home },
+  components: { navbar, home, popularfood },
 }
 </script>
 

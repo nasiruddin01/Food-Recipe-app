@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="navbar-container">
-      <div class="logo"><span>F</span>oodi</div>
+      <div class="logo"><span>F</span>oodi<span>W</span>orld</div>
       <div class="navbar">
         <p>Home</p>
         <p>Meal</p>
