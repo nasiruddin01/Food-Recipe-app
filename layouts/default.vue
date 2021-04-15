@@ -1,10 +1,22 @@
 <template>
-  <div>
+  <div class="primary-container">
+    <navbar />
+    <home />
     <Nuxt />
   </div>
 </template>
+<script>
+import navbar from '../components/navbar.vue'
+import home from '../components/home.vue'
+export default {
+  components: { navbar, home },
+}
+</script>
 
 <style>
+.primary-container {
+  background-color: #ffffff;
+}
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
