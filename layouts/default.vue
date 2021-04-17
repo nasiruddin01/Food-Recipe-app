@@ -18,6 +18,8 @@ export default {
 <style>
 .primary-container {
   background-color: #ffffff;
+  max-height: 100vh;
+  height: 100%;
 }
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',

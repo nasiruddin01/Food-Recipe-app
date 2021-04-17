@@ -27,16 +27,18 @@ export default {}
   max-width: 1080px;
   width: 100%;
   margin: 2rem auto 0 auto;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-gap: 2rem;
   font-family: $font-primary;
-  @media (max-width: 768px) {
-    width: 95%;
-    margin: 0 auto;
+  @media (min-width: 1024px) {
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 1rem;
+    grid-template-columns: 1fr auto;
+    grid-gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: 0 auto;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
   }
   .text {
     h1 {
@@ -71,6 +73,11 @@ export default {}
   .image {
     width: 30rem;
     height: 30rem;
+    @media (max-width: 768px) {
+      margin-top: 1rem;
+      width: 90vw;
+      height: 20rem;
+    }
 
     img {
       width: 100%;

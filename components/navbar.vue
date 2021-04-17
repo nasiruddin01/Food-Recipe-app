@@ -47,7 +47,11 @@
     grid-template-columns: 50rem 1fr;
     grid-gap: 1rem;
     padding: 1rem 0;
-
+    @media (max-width: 768px) {
+      width: 90%;
+      grid-template-columns: auto 1fr;
+      grid-gap: 1rem;
+    }
     .logo {
       font-size: 25px;
       font-weight: 600;
@@ -64,6 +68,9 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        @media (max-width: 768px) {
+          display: none;
+        }
         input {
           padding: 0.25rem 1rem;
           border: none;
