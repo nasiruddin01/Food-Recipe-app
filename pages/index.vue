@@ -1,8 +1,12 @@
 <template>
   <div class="container">
     <div class="search">
-      <input v-model="searchString" type="text" />
-      <button @click="searchMeals">search</button>
+      <input
+        v-model="searchString"
+        type="text"
+        placeholder="Serch your recipe"
+      />
+      <button @click="searchMeals" class="btn">search</button>
     </div>
     <div v-for="meal in searchedMeals" :key="meal.idMeal" class="meal">
       <img :src="meal.strMealThumb" alt="" />
@@ -49,18 +53,23 @@
     <div class="random-meal">
       <img :src="randomMeals.strMealThumb" alt="" />
       <div v-if="randomMeals" class="header">
-        <h1>Fish: {{ randomMeals.strMeal }}</h1>
-        <h4>{{ randomMeals.strArea }}</h4>
-        <h4 v-if="randomMeals.strCategory">
-          Food category: {{ randomMeals.strCategory }}
-        </h4>
+        <div class="about">
+          <h1>Fish: {{ randomMeals.strMeal }}</h1>
+          <h4>{{ randomMeals.strArea }}</h4>
+          <h4 v-if="randomMeals.strCategory">
+            Food category: {{ randomMeals.strCategory }}
+          </h4>
+          <h4 v-if="randomMeals.strTags">Tag : {{ randomMeals.strTags }}</h4>
+        </div>
 
-        <h4 v-if="randomMeals.strTags">Tag : {{ randomMeals.strTags }}</h4>
-        <p v-for="i in 20" :key="'strIngredient' + i">
-          {{ randomMeals['strIngredient' + i] }}
-          <span v-if="randomMeals['strIngredient' + i]">:</span>
-          {{ randomMeals['strMeasure' + i] }}
-        </p>
+        <h3>Required Ingredient:</h3>
+        <div class="ingredient">
+          <p v-for="i in 20" :key="'strIngredient' + i" class="materials">
+            {{ randomMeals['strIngredient' + i] }}
+            <span v-if="randomMeals['strIngredient' + i]">:</span>
+            {{ randomMeals['strMeasure' + i] }}
+          </p>
+        </div>
 
         <p>{{ randomMeals.strInstructions }}</p>
         <a :href="randomMeals.strSource" target="_blank">Recipe source</a>
@@ -160,22 +169,58 @@ export default {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    input {
+      padding: 0.5rem 2rem;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    .btn {
+      padding: 0.5rem 2rem;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
   }
   .meal {
     display: grid;
     grid-template-columns: 1fr 30rem;
     grid-gap: 1rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
     img {
       width: 35rem;
+      border-radius: 5px;
     }
   }
   .random-meal {
     display: grid;
     grid-template-columns: 1fr 30rem;
     grid-gap: 2rem;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
     img {
       width: 35rem;
+      height: 100%;
+      border-radius: 5px;
+    }
+    .header {
+      h3 {
+        margin-top: 1rem;
+      }
+      .ingredient {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+        margin-top: 0.5rem;
+        .materials {
+          background: $color-border;
+          font-size: 10px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 0.5rem 0;
+          border-radius: 5px;
+        }
+      }
     }
   }
 }
