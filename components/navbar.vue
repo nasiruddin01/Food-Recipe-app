@@ -5,8 +5,8 @@
       <div class="navbar">
         <p>Home</p>
         <p>Meal</p>
-        <p>Random meal</p>
-        <div class="search-bar">
+        <p @click="randomMeals">Random meal</p>
+        <div @click="searchMeals" class="search-bar">
           <input type="text" placeholder="Search your recipe" />
           <div>
             <svg

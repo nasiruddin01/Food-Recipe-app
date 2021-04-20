@@ -10,7 +10,7 @@
     </div>
     <h2 v-if="searchedMeals">Sarched Meal</h2>
     <div v-for="meal in searchedMeals" :key="meal.idMeal" class="meal">
-      <img :src="meal.strMealThumb" alt="" />
+      <!-- <img :src="meal.strMealThumb" alt="" /> -->
 
       <div v-if="meal" class="header">
         <div class="about">
@@ -19,21 +19,18 @@
           <h4 v-if="meal.strCategory">Food category: {{ meal.strCategory }}</h4>
           <h4 v-if="meal.strTags">Tag : {{ meal.strTags }}</h4>
         </div>
-
+        <!-- <button @click="showDetails(meal)">show</button>
+        {{ meal.showDetails }} value -->
+        <!-- <template v-if="meal.showDetails"> -->
         <h3>Required Ingredient:</h3>
         <div class="ingredient">
           <template v-for="i in 20">
-            <p
-              v-if="meal['strIngredient' + i]"
-              :key="'strIngredient' + i"
-              :class="materials"
-            >
+            <p v-if="meal['strIngredient' + i]" :key="'strIngredient' + i">
               {{ meal['strIngredient' + i] }}
               : {{ meal['strMeasure' + i] }}
             </p>
           </template>
         </div>
-
         <p class="instruction">{{ meal.strInstructions }}</p>
         <a :href="meal.strSource" target="_blank">Recipe source</a>
         <a :href="meal.strYoutube" target="_blank"
@@ -55,12 +52,13 @@
               class=""
             ></path></svg
         ></a>
+        <!-- </template> -->
       </div>
     </div>
 
     <h2 v-if="randomMeals">Random Meal</h2>
-    <div class="random-meal">
-      <img :src="randomMeals.strMealThumb" alt="" />
+    <div v-if="randomMeals" class="random-meal">
+      <!-- <img :src="randomMeals.strMealThumb" alt="" /> -->
       <div v-if="randomMeals" class="header">
         <div class="about">
           <h1>Fish: {{ randomMeals.strMeal }}</h1>
@@ -77,7 +75,6 @@
             <p
               v-if="randomMeals['strIngredient' + i]"
               :key="'strIngredient' + i"
-              :class="materials"
             >
               {{ randomMeals['strIngredient' + i] }}
               : {{ randomMeals['strMeasure' + i] }}
@@ -122,6 +119,7 @@ export default {
       randomMeals: null,
       singleMeals: null,
       searchedMeals: null,
+      // mutedMeals: [],
     }
   },
   computed: {
@@ -132,6 +130,18 @@ export default {
       }
     },
   },
+  // watch: {
+  //   searchedMeals: {
+  //     deep: true,
+  //     immediate: true,
+  //     handler(value) {
+  //       this.mutedMeals = JSON.parse(JSON.stringify(value))
+  //       this.mutedMeals.map((meal) => {
+  //         return meal
+  //       })
+  //     },
+  //   },
+  // },
   mounted() {
     this.fetchRandomMeals()
   },
@@ -163,6 +173,18 @@ export default {
           console.log(error)
         })
     },
+    // showDetails(meal) {
+    //   this.searchedMeals.map((m) => {
+    //     if (m.idMeal === meal.idMeal) {
+    //       const dummy = JSON.parse(JSON.stringify(m))
+    //       if (Object.hasOwnProperty(dummy, { showDetails: false })) {
+    //         meal.showDetails = !meal.showDetails
+    //       } else m.showDetails = false
+    //     }
+    //     return m
+    //   })
+    //   console.log('clicked', this.searchedMeals)
+    // },
   },
 }
 </script>
@@ -260,8 +282,6 @@ export default {
     margin-top: 2rem;
     padding-bottom: 2rem;
     @media (max-width: 768px) {
-      // display: grid;
-      // grid-template-rows: 1fr 1fr;
       display: flex;
       flex-direction: column;
     }
