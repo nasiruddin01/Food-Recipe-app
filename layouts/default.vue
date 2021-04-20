@@ -1,27 +1,22 @@
 <template>
-  <div class="primary-container">
+  <div>
     <navbar />
-    <home />
-    <popularfood />
-    <Nuxt />
+    <Nuxt class="primary-container" />
     <bottom />
   </div>
 </template>
 <script>
-import navbar from '../components/navbar.vue'
-
-import popularfood from '../components/popularfood.vue'
-import bottom from '../components/bottom.vue'
+import Navbar from '../components/navbar.vue'
+import Footer from '../components/bottom.vue'
 export default {
-  components: { navbar, popularfood, bottom },
+  components: { navbar: Navbar, bottom: Footer },
 }
 </script>
 
 <style>
 .primary-container {
   background-color: #ffffff;
-  max-height: 100vh;
-  height: 100%;
+  min-height: calc(100vh - 250px);
 }
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',

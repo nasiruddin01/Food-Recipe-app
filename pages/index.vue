@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <h1 class="main-header">Popular Food</h1>
+    <p>
+      We provide a variety of food and beverage recipes <br />
+      with high test from famous chefs
+    </p>
     <div class="search">
       <input
         v-model="searchString"
@@ -10,99 +15,92 @@
     </div>
     <h2 v-if="searchedMeals">Sarched Meal</h2>
     <div v-for="meal in searchedMeals" :key="meal.idMeal" class="meal">
-      <img :src="meal.strMealThumb" alt="" />
-
       <div v-if="meal" class="header">
         <div class="about">
-          <h1>Fish: {{ meal.strMeal }}</h1>
-          <h4>{{ meal.strArea }}</h4>
-          <h4 v-if="meal.strCategory">Food category: {{ meal.strCategory }}</h4>
+          <h1>{{ meal.strMeal }}</h1>
+          <h4>
+            <span>Origin: {{ meal.strArea }} •</span>
+            <span v-if="meal.strCategory"
+              >Food category: {{ meal.strCategory }}</span
+            >
+          </h4>
+          <a :href="meal.strYoutube" target="_blank" class="youtube"
+            >Recipe is live here</a
+          >
+          <img :src="meal.strMealThumb" alt="" />
           <h4 v-if="meal.strTags">Tag : {{ meal.strTags }}</h4>
         </div>
-        <!-- <button @click="showDetails(meal)">show</button>
-        {{ meal.showDetails }} value -->
-        <!-- <template v-if="meal.showDetails"> -->
         <h3>Required Ingredient:</h3>
         <div class="ingredient">
-          <template v-for="i in 20">
-            <p v-if="meal['strIngredient' + i]" :key="'strIngredient' + i">
-              {{ meal['strIngredient' + i] }}
-              : {{ meal['strMeasure' + i] }}
-            </p>
-          </template>
+          <table>
+            <tr>
+              <th>Ingredient</th>
+              <th>Quantity</th>
+            </tr>
+            <template v-for="i in 20">
+              <tr
+                class="table-row"
+                v-if="meal['strIngredient' + i]"
+                :key="'strIngredient' + i"
+              >
+                <td>{{ meal['strIngredient' + i] }}</td>
+                <td>{{ meal['strMeasure' + i] }}</td>
+              </tr>
+            </template>
+          </table>
         </div>
+
         <p class="instruction">{{ meal.strInstructions }}</p>
-        <a :href="meal.strSource" target="_blank">Recipe source</a>
-        <a :href="meal.strYoutube" target="_blank"
-          ><svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fab"
-            data-icon="youtube"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            height="1rem"
-            width="1.5rem"
-            viewBox="0 0 576 512"
-            class="svg-inline--fa fa-youtube fa-w-18 fa-5x"
-          >
-            <path
-              fill="red"
-              d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-              class=""
-            ></path></svg
-        ></a>
-        <!-- </template> -->
+        <a :href="meal.strSource" target="_blank" class="source"
+          >Recipe source</a
+        >
       </div>
     </div>
 
     <h2 v-if="randomMeals">Random Meal</h2>
-    <div v-if="randomMeals" class="random-meal">
-      <img :src="randomMeals.strMealThumb" alt="" />
+    <div v-if="randomMeals" class="meal">
       <div v-if="randomMeals" class="header">
         <div class="about">
-          <h1>Fish: {{ randomMeals.strMeal }}</h1>
-          <h4>{{ randomMeals.strArea }}</h4>
-          <h4 v-if="randomMeals.strCategory">
-            Food category: {{ randomMeals.strCategory }}
+          <h1>Food type: {{ randomMeals.strMeal }}</h1>
+
+          <h4>
+            <span>Origin: {{ randomMeals.strArea }}.</span>
+            <span v-if="randomMeals.strCategory"
+              >Food category: {{ randomMeals.strCategory }}</span
+            >
           </h4>
+
+          <a :href="randomMeals.strYoutube" target="_blank" class="youtube"
+            >Recipe is live here</a
+          >
+          <img :src="randomMeals.strMealThumb" alt="" />
           <h4 v-if="randomMeals.strTags">Tag : {{ randomMeals.strTags }}</h4>
         </div>
 
         <h3>Required Ingredient:</h3>
         <div class="ingredient">
-          <template v-for="i in 20">
-            <p
-              v-if="randomMeals['strIngredient' + i]"
-              :key="'strIngredient' + i"
-            >
-              {{ randomMeals['strIngredient' + i] }}
-              : {{ randomMeals['strMeasure' + i] }}
-            </p>
-          </template>
+          <table>
+            <tr>
+              <th>Ingredient</th>
+              <th>Quantity</th>
+            </tr>
+            <template v-for="i in 20">
+              <tr
+                v-if="randomMeals['strIngredient' + i]"
+                :key="'strIngredient' + i"
+                class="table-row"
+              >
+                <td>{{ randomMeals['strIngredient' + i] }}</td>
+                <td>{{ randomMeals['strMeasure' + i] }}</td>
+              </tr>
+            </template>
+          </table>
         </div>
 
         <p class="instruction">{{ randomMeals.strInstructions }}</p>
-        <a :href="randomMeals.strSource" target="_blank">Recipe source</a>
-        <a :href="randomMeals.strYoutube" target="_blank" class="youtube"
-          ><svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fab"
-            data-icon="youtube"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            height="1rem"
-            width="1.5rem"
-            viewBox="0 0 576 512"
-            class="svg-inline--fa fa-youtube fa-w-18 fa-5x"
-          >
-            <path
-              fill="red"
-              d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-              class=""
-            ></path></svg
-        ></a>
+        <a :href="randomMeals.strSource" target="_blank" class="source"
+          >Recipe source</a
+        >
       </div>
     </div>
   </div>
@@ -192,9 +190,21 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/style.scss';
 .container {
-  max-width: 1080px;
-  width: 90%;
   margin: 2rem auto 0 auto;
+  .main-header {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 300;
+  }
+  p {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  @media (min-width: 769px) {
+    margin: 0 auto;
+  }
   .search {
     width: 100%;
     margin: 1rem auto;
@@ -206,126 +216,104 @@ export default {
       padding: 0.5rem 2rem;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
+      border: 1px solid $color-tertiary;
+    }
+    input:focus {
+      border: none;
+      outline: 1px solid $color-tertiary;
     }
     .btn {
       padding: 0.5rem 2rem;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
+      border: 1px solid $color-tertiary;
+    }
+    .btn:focus {
+      outline: 1px solid $color-tertiary;
+    }
+    .btn:hover {
+      border: none;
+      outline: 1px solid $color-tertiary;
     }
   }
-  .meal {
-    display: grid;
-    grid-template-columns: 1fr 30rem;
-    grid-gap: 1rem;
-    margin: 2rem 0;
-    @media (max-width: 768px) {
-      display: flex;
-      flex-direction: column;
-    }
 
-    img {
-      width: 35rem;
-      border-radius: 5px;
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-    }
-    .header {
-      h3 {
-        margin-top: 1rem;
-      }
-      .ingredient {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 1rem;
-        margin-top: 0.5rem;
-        @media (max-width: 768px) {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-gap: 1rem;
-        }
-        p {
-          background: $color-border;
-          font-size: 10px;
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          padding: 0.5rem 0;
-          border-radius: 5px;
-        }
-      }
-      .instruction {
-        margin: 1rem 0;
-        line-height: 20px;
-        @media (max-width: 768px) {
-          text-align: center;
-        }
-      }
-      a {
-        text-decoration: none;
-        color: #000;
-      }
-      .youtube {
-        position: absolute;
-        margin-left: 1rem;
-      }
-    }
-  }
   h2 {
     text-align: center;
+    margin-bottom: 1rem;
   }
-  .random-meal {
-    display: grid;
-    grid-template-columns: 1fr 30rem;
-    grid-gap: 2rem;
-    margin-top: 2rem;
-    padding-bottom: 2rem;
-    @media (max-width: 768px) {
-      display: flex;
-      flex-direction: column;
-    }
-    img {
-      width: 30rem;
-      height: 100%;
-      border-radius: 5px;
+  .meal {
+    background: #edecf0;
+    border-radius: 5px;
+    border: 1px solid $color-tertiary;
+    padding: 1rem;
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 2rem;
 
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-    }
     .header {
+      width: 95%;
+      margin: 0 auto;
+      padding-top: 0.5rem;
+      @media (max-width: 768px) {
+        width: 95%;
+      }
       h3 {
         margin-top: 1rem;
       }
-      .ingredient {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 1rem;
-        margin-top: 0.5rem;
-        @media (max-width: 768px) {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-gap: 1rem;
+      .about {
+        h4 {
+          margin-bottom: 2rem;
         }
-        p {
-          background: $color-border;
-          font-size: 10px;
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          padding: 0.5rem 0;
+        .youtube {
+          text-decoration: none;
+          color: #000;
+          background: #ffa36c;
+          padding: 0.5rem 1rem;
           border-radius: 5px;
+        }
+        img {
+          width: 100%;
+          border-radius: 5px;
+          margin: 1rem 0 1rem 0;
+          @media (max-width: 768px) {
+            width: 100%;
+          }
+        }
+      }
+      .ingredient {
+        margin-top: 1rem;
+        table {
+          margin: auto;
+          border: 1px solid #b3b3b3;
+          width: 100%;
+          max-width: 1000px;
+          border-collapse: collapse;
+          .table-row {
+            border-collapse: collapse;
+          }
+          tr:nth-child(odd) {
+            text-align: start;
+          }
+
+          th,
+          td {
+            padding: 0.5rem 1rem;
+            color: black;
+            border: 1px solid black;
+            // text-align: center;
+          }
         }
       }
       .instruction {
         margin: 1rem 0;
         line-height: 20px;
       }
-      .youtube {
-        position: absolute;
-        margin-left: 1rem;
+      .source {
+        text-decoration: none;
+        color: #000;
+        background: #ffa36c;
+        padding: 0.5rem 1rem;
       }
     }
   }

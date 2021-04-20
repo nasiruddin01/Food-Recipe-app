@@ -2,7 +2,8 @@
   <div class="container">
     <p class="footer-logo"><span>F</span>oodi<span>W</span>orld Forum</p>
     <p class="content">
-      Total user : 175768 ,Total recipe : 86768 ,Total photos : 65759
+      Total user : 175768, &nbsp;&nbsp; Total recipe : 86768 ,&nbsp;&nbsp;Total
+      photos : 65759
     </p>
     <button class="btn">Join now</button>
 
@@ -175,8 +176,12 @@ export default {}
     }
     .media {
       margin-left: auto;
+
       @media (max-width: 768px) {
         margin: 0 auto;
+      }
+      a {
+        margin-left: 1rem;
       }
     }
   }
