@@ -10,7 +10,7 @@
     </div>
     <h2 v-if="searchedMeals">Sarched Meal</h2>
     <div v-for="meal in searchedMeals" :key="meal.idMeal" class="meal">
-      <!-- <img :src="meal.strMealThumb" alt="" /> -->
+      <img :src="meal.strMealThumb" alt="" />
 
       <div v-if="meal" class="header">
         <div class="about">
@@ -58,7 +58,7 @@
 
     <h2 v-if="randomMeals">Random Meal</h2>
     <div v-if="randomMeals" class="random-meal">
-      <!-- <img :src="randomMeals.strMealThumb" alt="" /> -->
+      <img :src="randomMeals.strMealThumb" alt="" />
       <div v-if="randomMeals" class="header">
         <div class="about">
           <h1>Fish: {{ randomMeals.strMeal }}</h1>

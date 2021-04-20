@@ -9,11 +9,11 @@
 </template>
 <script>
 import navbar from '../components/navbar.vue'
-import home from '../components/home.vue'
+
 import popularfood from '../components/popularfood.vue'
 import bottom from '../components/bottom.vue'
 export default {
-  components: { navbar, home, popularfood, bottom },
+  components: { navbar, popularfood, bottom },
 }
 </script>
 
