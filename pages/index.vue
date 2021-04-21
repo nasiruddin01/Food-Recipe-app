@@ -213,28 +213,31 @@ export default {
     justify-content: center;
     align-items: center;
     input {
-      padding: 0.5rem 2rem;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
+      padding: 0.5rem 1rem;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
       border: 1px solid $color-tertiary;
     }
     input:focus {
       border: none;
       outline: 1px solid $color-tertiary;
+      border-radius: 3px;
     }
     .btn {
       padding: 0.5rem 2rem;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
       border: 1px solid $color-tertiary;
     }
     .btn:focus {
       outline: 1px solid $color-tertiary;
+      border-radius: 3px;
     }
-    .btn:hover {
-      border: none;
-      outline: 1px solid $color-tertiary;
-    }
+    // .btn:hover {
+    //   border: none;
+    //   outline: 1px solid $color-tertiary;
+    //   border-radius: 3px;
+    // }
   }
 
   h2 {
@@ -250,7 +253,7 @@ export default {
     max-width: 700px;
     margin: auto;
     margin-bottom: 2rem;
-
+    padding-bottom: 2rem;
     .header {
       width: 95%;
       margin: 0 auto;
@@ -270,12 +273,12 @@ export default {
           color: #000;
           background: #ffa36c;
           padding: 0.5rem 1rem;
-          border-radius: 5px;
+          border-radius: 3px;
         }
         img {
           width: 100%;
           border-radius: 5px;
-          margin: 1rem 0 1rem 0;
+          margin: 2rem 0 1rem 0;
           @media (max-width: 768px) {
             width: 100%;
           }
@@ -314,6 +317,7 @@ export default {
         color: #000;
         background: #ffa36c;
         padding: 0.5rem 1rem;
+        border-radius: 3px;
       }
     }
   }

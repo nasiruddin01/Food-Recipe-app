@@ -173,6 +173,16 @@ export default {}
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      @media (max-width: 768px) {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        //   display: grid;
+        //   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        //   grid-gap: 0.5rem;
+      }
     }
     .media {
       margin-left: auto;
