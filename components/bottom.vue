@@ -143,6 +143,10 @@ export default {}
   .content {
     margin: 1rem 0;
     text-align: center;
+    @media (max-width: 768px) {
+      width: 95%;
+      margin: 1rem auto 0 auto;
+    }
   }
   .btn {
     margin: 1rem auto 0 auto;

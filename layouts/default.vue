@@ -16,7 +16,7 @@ export default {
 <style>
 .primary-container {
   background-color: #ffffff;
-  min-height: calc(100vh - 250px);
+  min-height: calc(100vh - 175px);
 }
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',

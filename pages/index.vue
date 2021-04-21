@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="main-header">Popular Food</h1>
-    <p>
+    <p class="text">
       We provide a variety of food and beverage recipes <br />
       with high test from famous chefs
     </p>
@@ -114,7 +114,7 @@
           <h4 v-if="randomMeals.strTags">Tag : {{ randomMeals.strTags }}</h4>
         </div>
 
-        <h3>Required Ingredient:</h3>
+        <h4>Required Ingredient:</h4>
         <div class="ingredient">
           <table>
             <tr>
@@ -222,13 +222,19 @@ export default {
     font-size: 3rem;
     font-weight: 300;
   }
-  p {
+  .text {
     text-align: center;
     margin-top: 1rem;
     font-size: 16px;
     line-height: 20px;
+    @media (max-width: 768px) {
+      width: 95%;
+      font-size: 14px;
+      margin: 0 auto;
+    }
   }
   @media (min-width: 769px) {
+    width: 95%;
     margin: 0 auto;
   }
   .search {
@@ -293,7 +299,7 @@ export default {
     max-width: 700px;
     margin: auto;
     margin-bottom: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 2.5rem;
     .header {
       width: 95%;
       margin: 0 auto;
@@ -353,7 +359,7 @@ export default {
         }
       }
       .instruction {
-        margin: 1rem 0;
+        margin: 1.5rem 0;
         line-height: 20px;
       }
       .source {
