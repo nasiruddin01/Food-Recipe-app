@@ -3,7 +3,7 @@
     <div class="navbar-container">
       <div class="logo"><span>F</span>oodi<span>W</span>orld</div>
       <div class="navbar">
-        <p @click="randomMeals">Random meal</p>
+        <p @click="fetchRandomMeals">Random meal</p>
       </div>
     </div>
   </div>

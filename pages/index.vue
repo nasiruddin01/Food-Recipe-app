@@ -56,6 +56,9 @@
         >
       </div>
     </div>
+    <div class="btn-container">
+      <button @click="fetchRandomMeals" class="random-btn">Random meal</button>
+    </div>
 
     <h2 v-if="randomMeals">Random Meal</h2>
     <div v-if="randomMeals" class="meal">
@@ -117,7 +120,6 @@ export default {
       randomMeals: null,
       singleMeals: null,
       searchedMeals: null,
-      // mutedMeals: [],
     }
   },
   computed: {
@@ -128,18 +130,7 @@ export default {
       }
     },
   },
-  // watch: {
-  //   searchedMeals: {
-  //     deep: true,
-  //     immediate: true,
-  //     handler(value) {
-  //       this.mutedMeals = JSON.parse(JSON.stringify(value))
-  //       this.mutedMeals.map((meal) => {
-  //         return meal
-  //       })
-  //     },
-  //   },
-  // },
+
   mounted() {
     this.fetchRandomMeals()
   },
@@ -234,17 +225,31 @@ export default {
       outline: 1px solid $color-tertiary;
       border-radius: 3px;
     }
-    // .btn:hover {
-    //   border: none;
-    //   outline: 1px solid $color-tertiary;
-    //   border-radius: 3px;
-    // }
+  }
+  .btn-container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .random-btn {
+      text-decoration: none !important;
+      color: #000 !important;
+      background: #ffa36c !important;
+      padding: 0.5rem 1rem !important;
+      border-radius: 3px !important;
+      border: none;
+      outline: none;
+    }
   }
 
   h2 {
     text-align: center;
     margin-bottom: 1rem;
   }
+
   .meal {
     background: #edecf0;
     border-radius: 5px;
