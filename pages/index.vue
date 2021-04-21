@@ -19,9 +19,9 @@
         <div class="about">
           <h1>Food Type: {{ meal.strMeal }}</h1>
           <h4>
-            <span>Origin: {{ meal.strArea }} •</span>
+            <span>Origin: {{ meal.strArea }} &nbsp;•&nbsp; </span>
             <span v-if="meal.strCategory"
-              >Food Category: {{ meal.strCategory }}</span
+              >Category: {{ meal.strCategory }}</span
             >
           </h4>
           <a :href="meal.strYoutube" target="_blank" class="youtube"
@@ -84,9 +84,9 @@
           <h1>Food Type: {{ randomMeals.strMeal }}</h1>
 
           <h4 class="category">
-            <span>Origin: {{ randomMeals.strArea }}.</span>
+            <span>Origin: {{ randomMeals.strArea }} &nbsp;•&nbsp; </span>
             <span v-if="randomMeals.strCategory"
-              >Food Category: {{ randomMeals.strCategory }}</span
+              >Category: {{ randomMeals.strCategory }}</span
             >
           </h4>
 
@@ -281,7 +281,7 @@ export default {
 
   h2 {
     text-align: center;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
   }
 
   .meal {
@@ -309,7 +309,7 @@ export default {
           margin-bottom: 1rem;
         }
         h4 {
-          margin-bottom: 2rem;
+          margin-bottom: 1rem;
         }
         .youtube {
           text-decoration: none;
@@ -322,7 +322,7 @@ export default {
         img {
           width: 100%;
           border-radius: 5px;
-          margin: 2rem 0 1rem 0;
+          margin: 1rem 0 1rem 0;
           @media (max-width: 768px) {
             width: 100%;
           }
