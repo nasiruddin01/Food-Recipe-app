@@ -17,15 +17,32 @@
     <div v-for="meal in searchedMeals" :key="meal.idMeal" class="meal">
       <div v-if="meal" class="header">
         <div class="about">
-          <h1>{{ meal.strMeal }}</h1>
+          <h1>Food Type: {{ meal.strMeal }}</h1>
           <h4>
             <span>Origin: {{ meal.strArea }} •</span>
             <span v-if="meal.strCategory"
-              >Food category: {{ meal.strCategory }}</span
+              >Food Category: {{ meal.strCategory }}</span
             >
           </h4>
           <a :href="meal.strYoutube" target="_blank" class="youtube"
-            >Recipe is live here</a
+            ><svg
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="youtube"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              height="16px"
+              viewBox="0 0 576 512"
+              class="svg-inline--fa fa-youtube fa-w-18 fa-5x"
+            >
+              <path
+                fill="red"
+                d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+                class=""
+              ></path>
+            </svg>
+            &nbsp;Recipe is live here</a
           >
           <img :src="meal.strMealThumb" alt="" />
           <h4 v-if="meal.strTags">Tag : {{ meal.strTags }}</h4>
@@ -52,29 +69,46 @@
 
         <p class="instruction">{{ meal.strInstructions }}</p>
         <a :href="meal.strSource" target="_blank" class="source"
-          >Recipe source</a
+          >Recipe Source</a
         >
       </div>
     </div>
     <div class="btn-container">
-      <button @click="fetchRandomMeals" class="random-btn">Random meal</button>
+      <button @click="fetchRandomMeals" class="random-btn">Random Meal</button>
     </div>
 
     <h2 v-if="randomMeals">Random Meal</h2>
     <div v-if="randomMeals" class="meal">
       <div v-if="randomMeals" class="header">
         <div class="about">
-          <h1>Food type: {{ randomMeals.strMeal }}</h1>
+          <h1>Food Type: {{ randomMeals.strMeal }}</h1>
 
-          <h4>
+          <h4 class="category">
             <span>Origin: {{ randomMeals.strArea }}.</span>
             <span v-if="randomMeals.strCategory"
-              >Food category: {{ randomMeals.strCategory }}</span
+              >Food Category: {{ randomMeals.strCategory }}</span
             >
           </h4>
 
           <a :href="randomMeals.strYoutube" target="_blank" class="youtube"
-            >Recipe is live here</a
+            ><svg
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="youtube"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              height="16px"
+              viewBox="0 0 576 512"
+              class="svg-inline--fa fa-youtube fa-w-18 fa-5x"
+            >
+              <path
+                fill="red"
+                d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+                class=""
+              ></path>
+            </svg>
+            &nbsp;Recipe is live here</a
           >
           <img :src="randomMeals.strMealThumb" alt="" />
           <h4 v-if="randomMeals.strTags">Tag : {{ randomMeals.strTags }}</h4>
@@ -102,7 +136,7 @@
 
         <p class="instruction">{{ randomMeals.strInstructions }}</p>
         <a :href="randomMeals.strSource" target="_blank" class="source"
-          >Recipe source</a
+          >Recipe Source</a
         >
       </div>
     </div>
@@ -271,15 +305,19 @@ export default {
         margin-top: 1rem;
       }
       .about {
+        h1 {
+          margin-bottom: 1rem;
+        }
         h4 {
           margin-bottom: 2rem;
         }
         .youtube {
           text-decoration: none;
           color: #000;
-          background: #ffa36c;
-          padding: 0.5rem 1rem;
-          border-radius: 3px;
+          font-weight: 600;
+          svg {
+            transform: translateY(2px);
+          }
         }
         img {
           width: 100%;
