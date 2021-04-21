@@ -13,8 +13,9 @@
 .container {
   max-width: 100vw;
   width: 100%;
-  box-shadow: 0px 1px 0px 0px $color-border;
-
+  box-shadow: 0px 0px 1px 0px $color-gray;
+  position: fixed;
+  background: #edecf0;
   .navbar-container {
     width: 90%;
     margin: 0 auto;
@@ -36,37 +37,13 @@
       }
     }
     .navbar {
-      display: grid;
-      grid-template-columns: auto auto 1fr 1fr;
-      grid-gap: 1rem;
-      .search-bar {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        @media (max-width: 768px) {
-          display: none;
-        }
-        input {
-          padding: 0.25rem 1rem;
-          border: none;
-          outline: none;
-        }
-        div {
-          transform: translateX(-11.5rem);
-          padding-left: 0.5rem;
-          svg {
-            color: $color-tertiary;
-          }
-          // width: 2rem;
-        }
+      p {
+        margin-top: 0.5rem;
       }
     }
   }
 }
 </style>
 <script>
-export default {
-  
-}
+export default {}
 </script>

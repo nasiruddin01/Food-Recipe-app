@@ -190,7 +190,8 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/style.scss';
 .container {
-  margin: 2rem auto 0 auto;
+  margin: 0 auto 0 auto;
+  padding-top: 4rem;
   .main-header {
     text-align: center;
     font-size: 3rem;
