@@ -15,85 +15,7 @@
     </div>
     <h2 v-if="searchedMeals">Sarched Meal</h2>
     <div v-for="meal in searchedMeals" :key="meal.idMeal" class="meal">
-      <div v-if="meal" class="header">
-        <div class="about">
-          <div>
-            <h1>{{ meal.strMeal }}</h1>
-            <button @click="addNewMeal(meal)">
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fal"
-                data-icon="save"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                height="20px"
-                viewBox="0 0 448 512"
-                class="svg-inline--fa fa-save fa-w-14 fa-5x"
-              >
-                <path
-                  fill="#000"
-                  d="M433.941 129.941l-83.882-83.882A48 48 0 0 0 316.118 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V163.882a48 48 0 0 0-14.059-33.941zM288 64v96H96V64h192zm128 368c0 8.822-7.178 16-16 16H48c-8.822 0-16-7.178-16-16V80c0-8.822 7.178-16 16-16h16v104c0 13.255 10.745 24 24 24h208c13.255 0 24-10.745 24-24V64.491a15.888 15.888 0 0 1 7.432 4.195l83.882 83.882A15.895 15.895 0 0 1 416 163.882V432zM224 232c-48.523 0-88 39.477-88 88s39.477 88 88 88 88-39.477 88-88-39.477-88-88-88zm0 144c-30.879 0-56-25.121-56-56s25.121-56 56-56 56 25.121 56 56-25.121 56-56 56z"
-                  class=""
-                ></path></svg
-              >Save
-            </button>
-          </div>
-
-          <h4>
-            <span>Origin: {{ meal.strArea }} &nbsp;•&nbsp; </span>
-            <span v-if="meal.strCategory"
-              >Category: {{ meal.strCategory }}</span
-            >
-          </h4>
-          <a :href="meal.strYoutube" target="_blank" class="youtube"
-            ><svg
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fab"
-              data-icon="youtube"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              height="16px"
-              viewBox="0 0 576 512"
-              class="svg-inline--fa fa-youtube fa-w-18 fa-5x"
-            >
-              <path
-                fill="red"
-                d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-                class=""
-              ></path>
-            </svg>
-            &nbsp;Recipe is live here</a
-          >
-          <img :src="meal.strMealThumb" alt="" />
-          <h4 v-if="meal.strTags">Tag : {{ meal.strTags }}</h4>
-        </div>
-        <h3>Required Ingredient:</h3>
-        <div class="ingredient">
-          <table>
-            <tr>
-              <th>Ingredient</th>
-              <th>Quantity</th>
-            </tr>
-            <template v-for="i in 20">
-              <tr
-                class="table-row"
-                v-if="meal['strIngredient' + i]"
-                :key="'strIngredient' + i"
-              >
-                <td>{{ meal['strIngredient' + i] }}</td>
-                <td>{{ meal['strMeasure' + i] }}</td>
-              </tr>
-            </template>
-          </table>
-        </div>
-
-        <p class="instruction">{{ meal.strInstructions }}</p>
-        <a :href="meal.strSource" target="_blank" class="source"
-          >Recipe Source</a
-        >
-      </div>
+      <Meal :meal="meal" />
     </div>
     <div class="btn-container">
       <button @click="fetchRandomMeals" class="random-btn">Random Meal</button>
@@ -101,95 +23,15 @@
 
     <h2 v-if="randomMeals">Random Meal</h2>
     <div v-if="randomMeals" class="meal">
-      <div v-if="randomMeals" class="header">
-        <div class="about">
-          <div>
-            <h1>{{ randomMeals.strMeal }}</h1>
-            <button @click="addNewMeal(randomMeals)">
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fal"
-                data-icon="save"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                height="20px"
-                viewBox="0 0 448 512"
-                class="svg-inline--fa fa-save fa-w-14 fa-5x"
-              >
-                <path
-                  fill="#000"
-                  d="M433.941 129.941l-83.882-83.882A48 48 0 0 0 316.118 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V163.882a48 48 0 0 0-14.059-33.941zM288 64v96H96V64h192zm128 368c0 8.822-7.178 16-16 16H48c-8.822 0-16-7.178-16-16V80c0-8.822 7.178-16 16-16h16v104c0 13.255 10.745 24 24 24h208c13.255 0 24-10.745 24-24V64.491a15.888 15.888 0 0 1 7.432 4.195l83.882 83.882A15.895 15.895 0 0 1 416 163.882V432zM224 232c-48.523 0-88 39.477-88 88s39.477 88 88 88 88-39.477 88-88-39.477-88-88-88zm0 144c-30.879 0-56-25.121-56-56s25.121-56 56-56 56 25.121 56 56-25.121 56-56 56z"
-                  class=""
-                ></path>
-              </svg>
-              Save
-            </button>
-          </div>
-
-          <h4 class="category">
-            <span>Origin: {{ randomMeals.strArea }} &nbsp;•&nbsp; </span>
-            <span v-if="randomMeals.strCategory"
-              >Category: {{ randomMeals.strCategory }}</span
-            >
-          </h4>
-
-          <a :href="randomMeals.strYoutube" target="_blank" class="youtube"
-            ><svg
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fab"
-              data-icon="youtube"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              height="16px"
-              viewBox="0 0 576 512"
-              class="svg-inline--fa fa-youtube fa-w-18 fa-5x"
-            >
-              <path
-                fill="red"
-                d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-                class=""
-              ></path>
-            </svg>
-            &nbsp;Recipe is live here</a
-          >
-          <img :src="randomMeals.strMealThumb" alt="" />
-          <h4 v-if="randomMeals.strTags">Tag : {{ randomMeals.strTags }}</h4>
-        </div>
-        <h4>Required Ingredient:</h4>
-        <div class="ingredient">
-          <table>
-            <tr>
-              <th>Ingredient</th>
-              <th>Quantity</th>
-            </tr>
-            <template v-for="i in 20">
-              <tr
-                v-if="randomMeals['strIngredient' + i]"
-                :key="'strIngredient' + i"
-                class="table-row"
-              >
-                <td>{{ randomMeals['strIngredient' + i] }}</td>
-                <td>{{ randomMeals['strMeasure' + i] }}</td>
-              </tr>
-            </template>
-          </table>
-        </div>
-
-        <p class="instruction">{{ randomMeals.strInstructions }}</p>
-        <a :href="randomMeals.strSource" target="_blank" class="source"
-          >Recipe Source</a
-        >
-      </div>
+      <Meal :meal="randomMeals" />
     </div>
   </div>
 </template>
 
 <script>
+import Meal from '~/components/meal.vue'
 export default {
-  components: {},
-
+  components: { Meal },
   data() {
     return {
       error: null,
@@ -239,18 +81,6 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
-    },
-    addNewMeal(meal) {
-      let meals = JSON.parse(localStorage.getItem('meals'))
-      if (!meals) {
-        meals = []
-      }
-      meals.push(meal)
-      this.saveMeals(meals)
-      console.log()
-    },
-    saveMeals(meals) {
-      localStorage.setItem('meals', JSON.stringify(meals))
     },
   },
 }
