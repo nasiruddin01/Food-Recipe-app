@@ -18,6 +18,7 @@
   box-shadow: 0px 0px 1px 0px $color-gray;
   position: fixed;
   background: #edecf0;
+  z-index: 100;
   .navbar-container {
     width: 90%;
     margin: 0 auto;
