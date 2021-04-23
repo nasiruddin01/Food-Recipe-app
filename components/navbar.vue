@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="navbar-container">
-      <a href="http://localhost:3000/" class="logo"
+      <a href="https://foodiworld.netlify.app/" class="logo"
         ><span>F</span>oodi<span>W</span>orld</a
       >
       <div class="navbar">
