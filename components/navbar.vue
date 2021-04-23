@@ -1,9 +1,11 @@
 <template>
   <div class="container">
     <div class="navbar-container">
-      <div class="logo"><span>F</span>oodi<span>W</span>orld</div>
+      <a href="http://localhost:3000/" class="logo"
+        ><span>F</span>oodi<span>W</span>orld</a
+      >
       <div class="navbar">
-        <p @click="fetchRandomMeals">Random meal</p>
+        <a href="saved-meals">Saved Recipe</a>
       </div>
     </div>
   </div>
@@ -32,13 +34,17 @@
     .logo {
       font-size: 25px;
       font-weight: 600;
+      text-decoration: none;
       span {
         color: #ffa36c;
       }
     }
     .navbar {
-      p {
-        margin-top: 0.5rem;
+      a {
+        margin-top: 0.75rem;
+        text-decoration: none;
+        font-weight: 600;
+        color: #000;
       }
     }
   }

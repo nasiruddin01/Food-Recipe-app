@@ -8,6 +8,7 @@
 <script>
 import Navbar from '../components/navbar.vue'
 import Footer from '../components/bottom.vue'
+
 export default {
   components: { navbar: Navbar, bottom: Footer },
 }

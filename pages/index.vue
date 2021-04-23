@@ -19,7 +19,7 @@
         <div class="about">
           <div>
             <h1>{{ meal.strMeal }}</h1>
-            <button>
+            <button @click="addNewMeal(meal)">
               <svg
                 aria-hidden="true"
                 focusable="false"
@@ -105,7 +105,7 @@
         <div class="about">
           <div>
             <h1>{{ randomMeals.strMeal }}</h1>
-            <button>
+            <button @click="addNewMeal(randomMeals)">
               <svg
                 aria-hidden="true"
                 focusable="false"
@@ -157,7 +157,6 @@
           <img :src="randomMeals.strMealThumb" alt="" />
           <h4 v-if="randomMeals.strTags">Tag : {{ randomMeals.strTags }}</h4>
         </div>
-
         <h4>Required Ingredient:</h4>
         <div class="ingredient">
           <table>
@@ -198,6 +197,8 @@ export default {
       randomMeals: null,
       singleMeals: null,
       searchedMeals: null,
+      // saveMeals: null,
+      // addNewMeal: null,
     }
   },
   computed: {
@@ -234,24 +235,23 @@ export default {
       this.$axios(config)
         .then((response) => {
           this.searchedMeals = response.data.meals
-          console.log(this.searchedMeals)
         })
         .catch(function (error) {
           console.log(error)
         })
     },
-    // showDetails(meal) {
-    //   this.searchedMeals.map((m) => {
-    //     if (m.idMeal === meal.idMeal) {
-    //       const dummy = JSON.parse(JSON.stringify(m))
-    //       if (Object.hasOwnProperty(dummy, { showDetails: false })) {
-    //         meal.showDetails = !meal.showDetails
-    //       } else m.showDetails = false
-    //     }
-    //     return m
-    //   })
-    //   console.log('clicked', this.searchedMeals)
-    // },
+    addNewMeal(meal) {
+      let meals = JSON.parse(localStorage.getItem('meals'))
+      if (!meals) {
+        meals = []
+      }
+      meals.push(meal)
+      this.saveMeals(meals)
+      console.log()
+    },
+    saveMeals(meals) {
+      localStorage.setItem('meals', JSON.stringify(meals))
+    },
   },
 }
 </script>
