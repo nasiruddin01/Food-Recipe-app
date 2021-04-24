@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="main-header">Popular Food</h1>
+    <h1 class="main-header">See your all favourite food recipe here</h1>
     <p class="text">
       We provide a variety of food and beverage recipes <br />
       with high test from famous chefs
