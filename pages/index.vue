@@ -5,6 +5,7 @@
       We provide a variety of food and beverage recipes <br />
       with high test from famous chefs
     </p>
+
     <div class="search">
       <input
         v-model="searchString"
@@ -13,18 +14,24 @@
       />
       <button @click="searchMeals" class="btn">search</button>
     </div>
-    <h2 v-if="searchedMeals">Sarched Meal</h2>
-    <div v-for="meal in searchedMeals" :key="meal.idMeal" class="meal">
-      <Meal :meal="meal" />
-    </div>
-    <div class="btn-container">
-      <button @click="fetchRandomMeals" class="random-btn">Random Meal</button>
-    </div>
+    <template v-if="searchedMeals">
+      <h2 v-if="searchedMeals">Sarched Meal</h2>
+      <div v-for="meal in searchedMeals" :key="meal.idMeal" class="meal">
+        <Meal :meal="meal" />
+      </div>
+    </template>
+    <template v-if="!searchedMeals">
+      <div class="btn-container">
+        <button @click="fetchRandomMeals" class="random-btn">
+          Random Meal
+        </button>
+      </div>
 
-    <h2 v-if="randomMeals">Random Meal</h2>
-    <div v-if="randomMeals" class="meal">
-      <Meal :meal="randomMeals" />
-    </div>
+      <h2 v-if="randomMeals">Random Meal</h2>
+      <div v-if="randomMeals" class="meal">
+        <Meal :meal="randomMeals" />
+      </div>
+    </template>
   </div>
 </template>
 

@@ -2,8 +2,8 @@
   <div class="saved-meal">
     <h1>Recipe you have saved</h1>
     <template v-if="savedMeals">
-      <div v-for="meal in savedMeals" :key="meal" class="meal">
-        <Meal :meal="meal" :isSaved="true" />
+      <div v-for="meal in savedMeals" :key="meal.idMeal" class="meal">
+        <Meal :meal="meal" :isSaved="true" @meal-deleted="onDelete" />
       </div>
     </template>
   </div>
@@ -21,6 +21,11 @@ export default {
   },
   created() {
     this.savedMeals = JSON.parse(localStorage.getItem('meals'))
+  },
+  methods: {
+    onDelete() {
+      this.savedMeals = JSON.parse(localStorage.getItem('meals'))
+    },
   },
 }
 </script>

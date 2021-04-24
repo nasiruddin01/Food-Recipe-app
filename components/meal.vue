@@ -23,6 +23,25 @@
           </svg>
           Save
         </button>
+        <button v-if="isSaved" @click="deleteMeal(meal)">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="trash-alt"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            height="20px"
+            viewBox="0 0 448 512"
+            class="svg-inline--fa fa-trash-alt fa-w-14 fa-5x"
+          >
+            <path
+              fill="#000"
+              d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"
+              class=""
+            ></path>
+          </svg>
+        </button>
       </div>
 
       <h4>
@@ -94,6 +113,13 @@ export default {
     saveMeals(meals) {
       localStorage.setItem('meals', JSON.stringify(meals))
     },
+    deleteMeal(meal) {
+      console.log('delete was clicked')
+      let meals = JSON.parse(localStorage.getItem('meals'))
+      meals = meals.filter((m) => m.idMeal !== meal.idMeal)
+      this.saveMeals(meals)
+      this.$emit('meal-deleted')
+    },
   },
 }
 </script>
@@ -135,6 +161,7 @@ export default {
           font-size: 16px;
           font-weight: 600;
           margin: 0;
+          cursor: pointer;
           svg {
             transform: translateY(2px);
           }
